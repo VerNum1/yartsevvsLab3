@@ -2,6 +2,9 @@ package tech.reliab.course.toropchida.yartsevvsLab3.entity;
 
 import lombok.*;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 // Entity of database  bank
 @Entity

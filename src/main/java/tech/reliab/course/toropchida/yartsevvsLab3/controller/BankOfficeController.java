@@ -34,7 +34,7 @@ public class BankOfficeController {
     }
 
     @PostMapping("/bank_office")
-    public ResponseEntity<BankOffice> createBankOffice(BankOffice bankOffice) {
+    public ResponseEntity<BankOffice> createBankOffice(@RequestBody BankOffice bankOffice) {
         try {
             return new ResponseEntity<>(bankOfficeService.createBankOffice(bankOffice), HttpStatus.CREATED);
         } catch (Exception e) {
@@ -43,9 +43,9 @@ public class BankOfficeController {
     }
 
     @PutMapping("/bank_office/{id}")
-    public ResponseEntity<BankOffice> updateBankOffice(@PathVariable Long id, BankOffice bankOfficeDetails) {
+    public ResponseEntity<BankOffice> updateBankOffice(@PathVariable Long id, @RequestBody BankOffice officeDetails) {
         try {
-            return new ResponseEntity<>(bankOfficeService.updateBankOffice(id, bankOfficeDetails), HttpStatus.OK);
+            return new ResponseEntity<>(bankOfficeService.updateBankOffice(id, officeDetails), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

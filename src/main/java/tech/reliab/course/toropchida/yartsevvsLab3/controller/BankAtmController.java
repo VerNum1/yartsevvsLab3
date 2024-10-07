@@ -34,7 +34,7 @@ public class BankAtmController {
     }
 
     @PostMapping("/bank_atm")
-    public ResponseEntity<BankAtm> createBankAtm(BankAtm bank) {
+    public ResponseEntity<BankAtm> createBankAtm(@RequestBody BankAtm bank) {
         try {
             return new ResponseEntity<>(bankAtmService.createBankAtm(bank), HttpStatus.CREATED);
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class BankAtmController {
     }
 
     @PutMapping("/bank_atm/{id}")
-    public ResponseEntity<BankAtm> updateBankAtm(@PathVariable Long id, BankAtm bankAtmDetails) {
+    public ResponseEntity<BankAtm> updateBankAtm(@PathVariable Long id, @RequestBody BankAtm bankAtmDetails) {
         try {
             return new ResponseEntity<>(bankAtmService.updateBankAtm(id, bankAtmDetails), HttpStatus.OK);
         } catch (Exception e) {
@@ -55,7 +55,7 @@ public class BankAtmController {
     public HttpStatus deleteBankAtms() {
         try {
             bankAtmService.deleteAllBanksAtms();
-            return  HttpStatus.NO_CONTENT;
+            return HttpStatus.NO_CONTENT;
         } catch (Exception e) {
             return HttpStatus.INTERNAL_SERVER_ERROR;
         }
@@ -65,7 +65,7 @@ public class BankAtmController {
     public HttpStatus deleteBankAtm(@PathVariable Long id) {
         try {
             bankAtmService.deleteBankAtm(id);
-            return  HttpStatus.NO_CONTENT;
+            return HttpStatus.NO_CONTENT;
         } catch (Exception e) {
             return HttpStatus.INTERNAL_SERVER_ERROR;
         }

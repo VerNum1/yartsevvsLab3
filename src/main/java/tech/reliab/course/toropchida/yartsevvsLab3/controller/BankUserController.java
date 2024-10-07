@@ -35,7 +35,7 @@ public class BankUserController {
     }
 
     @PostMapping("/bank_user")
-    public ResponseEntity<BankUser> createBankUser(BankUser bank) {
+    public ResponseEntity<BankUser> createBankUser(@RequestBody BankUser bank) {
         try {
             return new ResponseEntity<>(bankUserService.createUser(bank), HttpStatus.CREATED);
         } catch (Exception e) {
@@ -44,7 +44,7 @@ public class BankUserController {
     }
 
     @PutMapping("/bank_user/{id}")
-    public ResponseEntity<BankUser> updateBankUser(@PathVariable Long id, BankUser bankUserDetails) {
+    public ResponseEntity<BankUser> updateBankUser(@PathVariable Long id, @RequestBody BankUser bankUserDetails) {
         try {
             return new ResponseEntity<>(bankUserService.updateUser(id, bankUserDetails), HttpStatus.OK);
         } catch (Exception e) {

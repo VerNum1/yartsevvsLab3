@@ -14,7 +14,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class EntityController {
     public final EmployeeService employeeService;
-    
+
     @GetMapping("/employee")
     public ResponseEntity<List<Employee>> getAllEmployees() {
         try {
@@ -34,7 +34,7 @@ public class EntityController {
     }
 
     @PostMapping("/employee")
-    public ResponseEntity<Employee> createEmployee(Employee employee) {
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
         try {
             return new ResponseEntity<>(employeeService.createEmployee(employee), HttpStatus.CREATED);
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class EntityController {
     }
 
     @PutMapping("/employee/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, Employee employeeDetails) {
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails) {
         try {
             return new ResponseEntity<>(employeeService.updateEmployee(id, employeeDetails), HttpStatus.OK);
         } catch (Exception e) {
@@ -55,7 +55,7 @@ public class EntityController {
     public HttpStatus deleteEmployees() {
         try {
             employeeService.deleteAllEmployees();
-            return  HttpStatus.NO_CONTENT;
+            return HttpStatus.NO_CONTENT;
         } catch (Exception e) {
             return HttpStatus.INTERNAL_SERVER_ERROR;
         }
@@ -65,7 +65,7 @@ public class EntityController {
     public HttpStatus deleteEmployee(@PathVariable Long id) {
         try {
             employeeService.deleteEmployee(id);
-            return  HttpStatus.NO_CONTENT;
+            return HttpStatus.NO_CONTENT;
         } catch (Exception e) {
             return HttpStatus.INTERNAL_SERVER_ERROR;
         }

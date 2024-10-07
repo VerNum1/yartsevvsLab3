@@ -34,7 +34,7 @@ public class CreditAccountController {
     }
 
     @PostMapping("/credit_account")
-    public ResponseEntity<CreditAccount> createCreditAccount(CreditAccount creditAccount) {
+    public ResponseEntity<CreditAccount> createCreditAccount(@RequestBody CreditAccount creditAccount) {
         try {
             return new ResponseEntity<>(creditAccountService.createCreditAccount(creditAccount), HttpStatus.CREATED);
         } catch (Exception e) {
@@ -43,9 +43,9 @@ public class CreditAccountController {
     }
 
     @PutMapping("/credit_account/{id}")
-    public ResponseEntity<CreditAccount> updateCreditAccount(@PathVariable Long id, CreditAccount credAccDetails) {
+    public ResponseEntity<CreditAccount> updateCreditAccount(@PathVariable Long id, @RequestBody CreditAccount ca) {
         try {
-            return new ResponseEntity<>(creditAccountService.updateCreditAccount(id, credAccDetails), HttpStatus.OK);
+            return new ResponseEntity<>(creditAccountService.updateCreditAccount(id, ca), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -55,7 +55,7 @@ public class CreditAccountController {
     public HttpStatus deleteCreditAccounts() {
         try {
             creditAccountService.deleteAllCreditAccounts();
-            return  HttpStatus.NO_CONTENT;
+            return HttpStatus.NO_CONTENT;
         } catch (Exception e) {
             return HttpStatus.INTERNAL_SERVER_ERROR;
         }
@@ -65,7 +65,7 @@ public class CreditAccountController {
     public HttpStatus deleteCreditAccount(@PathVariable Long id) {
         try {
             creditAccountService.deleteCreditAccount(id);
-            return  HttpStatus.NO_CONTENT;
+            return HttpStatus.NO_CONTENT;
         } catch (Exception e) {
             return HttpStatus.INTERNAL_SERVER_ERROR;
         }

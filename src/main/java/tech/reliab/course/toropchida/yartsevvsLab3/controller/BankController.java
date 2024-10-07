@@ -36,7 +36,7 @@ public class BankController {
     }
 
     @PostMapping("/bank")
-    public ResponseEntity<Bank> createBank(Bank bank) {
+    public ResponseEntity<Bank> createBank(@RequestBody Bank bank) {
         try {
             return new ResponseEntity<>(bankService.createBank(bank), HttpStatus.CREATED);
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class BankController {
     }
 
     @PutMapping("/bank/{id}")
-    public ResponseEntity<Bank> updateBank(@PathVariable Long id, Bank bankDetails) {
+    public ResponseEntity<Bank> updateBank(@PathVariable Long id, @RequestBody Bank bankDetails) {
         try {
             return new ResponseEntity<>(bankService.updateBank(id, bankDetails), HttpStatus.OK);
         } catch (Exception e) {
@@ -57,7 +57,7 @@ public class BankController {
     public HttpStatus deleteBanks() {
         try {
             bankService.deleteAllBanks();
-            return  HttpStatus.NO_CONTENT;
+            return HttpStatus.NO_CONTENT;
         } catch (Exception e) {
             return HttpStatus.INTERNAL_SERVER_ERROR;
         }
@@ -67,7 +67,7 @@ public class BankController {
     public HttpStatus deleteBank(@PathVariable Long id) {
         try {
             bankService.deleteBank(id);
-            return  HttpStatus.NO_CONTENT;
+            return HttpStatus.NO_CONTENT;
         } catch (Exception e) {
             return HttpStatus.INTERNAL_SERVER_ERROR;
         }
