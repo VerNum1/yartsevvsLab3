@@ -18,7 +18,9 @@ import static tech.reliab.course.toropchida.yartsevvsLab3.utils.Utils.getNullPro
 @Service
 @AllArgsConstructor
 public class BankAtmServiceImpl implements BankAtmService {
+
     public final BankAtmRepository bankAtmRepo;
+
     public final BankRepository bankRepository;
     public final BankOfficeRepository bankOfficeRepository;
 

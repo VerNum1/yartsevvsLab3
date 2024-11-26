@@ -32,25 +32,7 @@ public class BankServiceImpl implements BankService {
         int bankRating = Utils.getRandomIntFromAToB(0, 100);
         bank.setBankRating(bankRating);
         bank.setTotalMoney(Utils.getRandomIntFromAToB(1, 1000000));
-
-        int a = 0, b = 20;
-        int div = bankRating / 20;
-        if (div >= 4) {
-            b = 4;
-        } else if (div == 3) {
-            a = 4;
-            b = 8;
-        } else if (div == 2) {
-            a = 8;
-            b = 12;
-        } else if (div == 1) {
-            a = 12;
-            b = 16;
-        } else {
-            a = 16;
-        }
-
-        bank.setInterestRate((float) (Math.random() * (b - a)) + (a));
+        bank.setInterestRate((float) 2000 / bankRating);
 
         return bankRepo.save(bank);
     }
@@ -101,7 +83,7 @@ public class BankServiceImpl implements BankService {
             List<BankAtm> bankAtms = bankAtmRepository.getBankAtmByBankId(id);
             List<Employee> employees = employeeRepository.getEmployeeByBankId(id);
 
-            System.out.println("Bank: " + bank);
+            System.out.println("Bank: " + bank.get());
             System.out.println("Offices:");
             for (BankOffice office : bankOffices) {
                 System.out.println("\t" + office);

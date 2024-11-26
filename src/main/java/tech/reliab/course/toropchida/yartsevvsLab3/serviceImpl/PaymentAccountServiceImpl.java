@@ -1,6 +1,6 @@
 package tech.reliab.course.toropchida.yartsevvsLab3.serviceImpl;
 
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.reliab.course.toropchida.yartsevvsLab3.entity.PaymentAccount;
 import tech.reliab.course.toropchida.yartsevvsLab3.repository.BankUserRepository;
@@ -15,10 +15,16 @@ import static org.springframework.beans.BeanUtils.copyProperties;
 import static tech.reliab.course.toropchida.yartsevvsLab3.utils.Utils.getNullPropertyNames;
 
 @Service
-@AllArgsConstructor
 public class PaymentAccountServiceImpl implements PaymentAccountService {
+
     public final PaymentAccountRepository paymentAccountRepo;
     public final BankUserRepository bankUserRepository;
+
+    @Autowired
+    public PaymentAccountServiceImpl(PaymentAccountRepository paymentAccountRepo, BankUserRepository bankUserRepository) {
+        this.paymentAccountRepo = paymentAccountRepo;
+        this.bankUserRepository = bankUserRepository;
+    }
 
     public PaymentAccount createPaymentAccount(PaymentAccount paymentAccount) {
         paymentAccount.setCurrentAmount(0);
